@@ -8,14 +8,16 @@
     "npm": "7.24.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "postinstall": "npm run build"
+    "dev":"nodemon index.js"
   },
   "author": "Hardik Garg and Ojas Saraswat",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
