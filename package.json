@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js -p $PORT"
+    "start": "node index.js",
+    "postinstall": "npm run build"
   },
   "author": "Hardik Garg and Ojas Saraswat",
   "license": "ISC",
