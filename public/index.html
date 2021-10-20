@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Discord</title>
+        <link rel="stylesheet" href="styles/index.css" />
+    </head>
+    
+    <body class="body">
+        <div class="container">
+            <h1>Welcome There!</h1>
+            <div class="form-item">
+            <div>We are excited to have you on board with us.</div>
+            <div>Please enter your name and let us get you started</div>
+            </div>
+            <form action="discord.html" >
+                <!-- <label class="form-item" class="">Write your name</label><br> -->
+                <div class="form-item">
+                    <input class="form-item" placeholder="Enter your name" id="name"><br>
+                    <div>
+                        <select class="form-item" id="room">
+                        <option value="0">Select Channel:</option>
+                        <option value="food">Food</option>
+                        <option value="movies">Movies</option>
+                        <option value="games">Games</option>
+                        <option value="technologies">Technologies</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="form-item" onclick="showName()" type="submit">Enter Our Server</button>
+            </form>
+        </div>
+        <!-- <script src="index.js"></script>  -->
+        <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+        <script>
+
+            var socket = io()
+
+            function showName(){
+                var name = document.getElementById("name").value;
+                var room = document.getElementById("room").value;
+                var userData = {'name':name,'room':room}
+                localStorage.setItem('user',JSON.stringify(userData))
+            }
+
+        </script>
+    </body>
+</html>

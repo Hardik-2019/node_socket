@@ -1,0 +1,20 @@
+.body{
+    height: 90vh;
+    background: #CCCCCC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.container{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom:15px;
+    background-color: black;
+}
+.form-item{
+    margin: 10px;
+    padding: 5px;
+    font-size: 20px;
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="styles/discord.css" />
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div class="col wd20">
+      <h1 class="side-list center">Channels</h1>
+      <ul class="side-list">
+        <div id="food" class="side-list-item">Food</div>
+        <div id="movies" class="side-list-item">Movies</div>
+        <div id="games" class="side-list-item">Games</div>
+        <div id="technologies" class="side-list-item">Technologies</div>
+      </ul>
+      <button onclick="logout()" class="logout">Logout</button>
+    </div>
+    <div class="col wd80">
+      <h1 id="top" class="top"></h1>
+      <ul id="messages"></ul>
+      <form action="" id="no">
+        <input id="m" autocomplete="off" /><button onclick="sendmsg()">Send</button>
+      </form>
+    </div>
+    
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script>
+        // var room = "Food"
+
+        var val =localStorage.getItem('user');
+        var name = JSON.parse(val).name;
+        var room = JSON.parse(val).room;
+        console.log(room);
+
+        if(room === 'food'){
+          document.getElementById('food').classList.add("selected")
+          document.getElementById('top').innerHTML='# Welcome ' + name + ' to the Food Channel'
+        }
+        else if(room === 'movies'){
+          document.getElementById('movies').classList.add("selected")
+          document.getElementById('top').innerHTML='# Welcome ' + name + ' to the Movies Channel'
+        }
+        else if(room === 'games'){
+          document.getElementById('games').classList.add("selected")
+          document.getElementById('top').innerHTML='# Welcome ' + name + ' to the Games Channel'
+        }
+        else if(room === 'technologies'){
+          document.getElementById('technologies').classList.add("selected")
+          document.getElementById('top').innerHTML='# Welcome ' + name + ' to the Technologies Channel'
+        }
+        
+        var socket=io();
+        document.getElementById('no').addEventListener('submit',(e)=>{
+            e.preventDefault();
+        })
+        function sendmsg(){
+            var msg=document.getElementById('m').value;
+            document.getElementById('m').value='';
+            if(msg){
+                socket.emit('createmsg',{room:room,name:name,message:msg});
+            }
+        }
+        socket.on('newmsg',(data)=>{
+          if(room===data.room){
+            var li=document.createElement('li');
+            var span1 = document.createElement('span')
+            var span2 = document.createElement('span')
+            span1.innerHTML=data.name + " : ";
+            span2.innerHTML=data.message;
+            span1.classList.add('bold')
+            li.appendChild(span1)
+            li.appendChild(span2)
+            document.getElementById('messages').appendChild(li);
+          }
+        })
+
+        function logout(){
+          localStorage.setItem('user','');
+          window.location.href = 'index.html'
+        }
+        
+    </script>
+  </body>
+</html>
