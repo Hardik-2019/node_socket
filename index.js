@@ -6,7 +6,7 @@ const server = http.createServer(app);
 var io=require('socket.io')(server);
 
 // app.get('/',(req,res)=>{
-//     res.sendFile(__dirname+'/welcome.html');
+//     res.sendFile(__dirname+'/public/index.html');
 // })
 app.use(express.static(path.join(__dirname,'public')))
 
