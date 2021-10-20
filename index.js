@@ -17,6 +17,6 @@ io.on('connection',(socket)=>{
     })
 })
 
-var port = 5000 || process.env.PORT;
+const PORT = 5000 || process.env.PORT;
 
-server.listen(port, ()=> console.log(`Server running at port number ${port}`))
+server.listen(PORT, ()=> console.log(`Server running at port number ${PORT}`))
